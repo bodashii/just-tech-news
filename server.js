@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require("express");
+const routes = require('./controllers/');
 
 const exphbs = require("express-handlebars");
 
@@ -20,8 +21,8 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // turn on routes
-app.use(require('./controllers'));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(routes);
 
 // turn on connection to db and server
 sequelize.sync({ force: false }).then(() => {
